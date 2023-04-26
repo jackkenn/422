@@ -1,133 +1,69 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Image Processing App</title>
-<link href="/static/styles/demo_style.css" rel="stylesheet" type="text/css">
-
-<link href="/static/styles/smart_wizard.css" rel="stylesheet" type="text/css">
-<link href="/static/styles/bootstrap.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="/static/js/jquery.smartWizard.js"></script>
-
-
-
-<script type="text/javascript">
-    $(document).ready(function(){
-  		$('#wizard').smartWizard({transitionEffect:'fade',onFinish:onFinishCallback});
-    
-      function onFinishCallback(){
-         $('form').submit();
-      }     
-		});
-</script>
-
-
-</head><body>
-
-<div class="demoHead">   
-  <div>
-    <div style="float:left;">
-      <h1>Image Processing App</h1>
-      <h2>a cloud-based app for Image Processing</h2>
-    </div>
-  
-    <div style="clear:both;"></div>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Photo Gallery</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,700,500,300,300italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href="/static/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/static/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="/static/assets/plugins/et-line/et-line.css" rel="stylesheet" type="text/css"/>
+<link href="/static/assets/plugins/themify/themify.css" rel="stylesheet" type="text/css"/> -->
+<!-- <link href="/static/assets/plugins/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css"/> -->
+<!-- <link href="/static/assets/css/global.css" rel="stylesheet" type="text/css"/> -->
+<script type="text/javascript" src="/static/assets/plugins/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="bg-color-sky-light">
+    <br>
+    <center><h2>Photo Gallery</h2>
+    <br>
+    <a href="/index/{{user}}/">Home</a> | <a href="/resize/{{user}}/">Add Photo</a> | <a href="/login">Logout</a><br><br>
+<div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="blog-grid-content">
+                                <form  method='get' action="/index/{{user}}/{{query}}">
+                            <input type="text" name="query" id="query" class="form-control" placeholder="Search photos">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </center>
+        <div class="content-sm container">
+            <div class="theme-portfolio">
+                <div id="portfolio-4-col-grid" class="cbp">
+                    {% for p in photos %}
+                    <h1>{{p}}</h1>
+                    <a href="/static/output/{{user}}/{{p}}" download>download</a>
+                    <div class="cbp-item idea web-design theme-portfolio-item-v2 theme-portfolio-item-xs">
+                        <div class="cbp-caption">
+                            <div class="cbp-caption-defaultWrap theme-portfolio-active-wrap">
+                                <img src="/static/output/{{user}}/{{p}}" alt="">
+                                <div class="theme-icons-wrap theme-portfolio-lightbox">
+                                    <a class="cbp-lightbox" href="/static/output/{{user}}/{{p}}" data-title="Portfolio">
+                                        <i class="theme-icons theme-icons-white-bg theme-icons-sm radius-3 icon-focus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="theme-portfolio-title-heading">
+                                <h4 class="theme-portfolio-title"><a href="/{{user}}/{{p.PhotoID}}/">{{p.Title}}</a></h4>
+                            <span class="theme-portfolio-subtitle">{{p.CreationTime}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+         </div>
+      </div>
   </div>
-
- 
-
-</div>
-
-
-<form action="/" method="post" enctype="multipart/form-data">
-{% csrf_token %}
-<br>
-<table align="center" border="0" cellpadding="0" cellspacing="0">
-<tr><td> 
-<!-- Smart Wizard -->
-        <h2>Upload image file </h2> 
-  		<div id="wizard" class="swMain">
-  			<ul>
-  				<li><a href="#step-1">
-                <label class="stepNumber">1</label>
-                <span class="stepDesc">
-                   Step 1<br />
-                   <small>Select image file</small>
-                </span>
-            </a></li>
-  				<li><a href="#step-2">
-                <label class="stepNumber">2</label>
-                <span class="stepDesc">
-                   Step 2<br />
-                   <small>Select image filter</small>
-                </span>
-            </a></li>
-  				<li><a href="#step-3">
-                <label class="stepNumber">3</label>
-                <span class="stepDesc">
-                   Step 3<br />
-                   <small>Apply filter</small>
-                </span>                   
-             </a></li>
-  				
-  			</ul>
-  			<div id="step-1">	
-            <h2 class="StepTitle">Select image file</h2>
-
-
-
-<h4>Choose the image file:</h4>
-	
-            <p>{{ form.non_field_errors }}</p>
-			            <p>
-            	{{ form.myfilefield.errors }}
-                {{ form.myfilefield }}
-            </p>
-  				   
-        </div>
-  			<div id="step-2">
-            <h2 class="StepTitle">Select Image Filter</h2>	<br>
-           <h4>Choose Filter:</h4>
-<h4>
-<table border = '0' width = 90% align="center">
-<tr>
-<td><input type="radio" name="preset" value="gray">&nbsp;Gray</td>
-<td><input type="radio" name="preset" value="sepia">&nbsp;Sepia</td>
-<td><input type="radio" name="preset" value="poster">&nbsp;Poster</td>
-</tr>
-<tr>
-<td><img src = '/static/images/gray.jpg' width='120px' ></td>
-<td><img src = '/static/images/sepia.jpg' width='120px' ></td>
-<td><img src = '/static/images/poster.jpg' width='120px' ></td>
-</tr>
-<tr>
-<td><input type="radio" name="preset" value="blur">&nbsp;Blur</td>
-<td><input type="radio" name="preset" value="edge">&nbsp;Edge</td>
-<td><input type="radio" name="preset" value="solar">&nbsp;Solar</td>
-</tr>
-<td><img src = '/static/images/blur.jpg' width='120px' ></td>
-<td><img src = '/static/images/edge.jpg' width='120px' ></td>
-<td><img src = '/static/images/solar.jpg' width='120px' ></td>
-</tr>
-</h4>
-
-
-</table>
-        </div>                      
-  			<div id="step-3">
-            <h2 class="StepTitle">Aplly Filter</h2>	
-	<br>
-                     <h4>Click finish to apply filter to image.</h4><br>
-			
-        </div>
-  			
-  		</div>
-	
- 		
-</td></tr>
-</table>
-</form>
-
-	
-</body>
-</html>
+  <script type="text/javascript" src="/static/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/static/assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+  <script type="text/javascript" src="/static/assets/scripts/app.js"></script>
+  <script type="text/javascript" src="/static/assets/scripts/portfolio/portfolio-4-col-grid.js"></script>
+  </body>
+  </html>

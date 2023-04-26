@@ -1,0 +1,7 @@
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image">
+    <input type="number" name="length">Width
+    <input type="number" name="width"> Height
+    <input type="submit" value="Resize">
+</form>

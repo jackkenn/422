@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Photo Gallery Preview</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,700,500,300,300italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href="/static/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/static/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="/static/assets/plugins/et-line/et-line.css" rel="stylesheet" type="text/css"/>
+<link href="/static/assets/plugins/themify/themify.css" rel="stylesheet" type="text/css"/> -->
+<!-- <link href="/static/assets/plugins/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css"/> -->
+<!-- <link href="/static/assets/css/global.css" rel="stylesheet" type="text/css"/> -->
+<script type="text/javascript" src="/static/assets/plugins/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="bg-color-sky-light">
+    <br>
+    <center><h2>Photo Gallery Preview</h2>
+    <br>
+    <a href="/login">Login</a><br>
+<div class="container">
+        </div>
+    </center>
+        <div class="content-sm container">
+            <div class="theme-portfolio">
+                <div id="portfolio-4-col-grid" class="cbp">
+                    {% for p in photos %}
+                    <h1>{{p}}</h1>
+                    <a href="/static/output/{{p}}" download>download</a>
+                    <div class="cbp-item idea web-design theme-portfolio-item-v2 theme-portfolio-item-xs">
+                        <div class="cbp-caption">
+                            <div class="cbp-caption-defaultWrap theme-portfolio-active-wrap">
+                                <img src="/static/output/{{p}}" alt="">
+                                <div class="theme-icons-wrap theme-portfolio-lightbox">
+                                    <a class="cbp-lightbox" href="/static/output/{{p}}" data-title="Portfolio">
+                                        <i class="theme-icons theme-icons-white-bg theme-icons-sm radius-3 icon-focus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="theme-portfolio-title-heading">
+                                <h4 class="theme-portfolio-title"><a href="/{{user}}/{{p.PhotoID}}/">{{p.Title}}</a></h4>
+                            <span class="theme-portfolio-subtitle">{{p.CreationTime}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+         </div>
+      </div>
+  </div>
+  <script type="text/javascript" src="/static/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/static/assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+  <script type="text/javascript" src="/static/assets/scripts/app.js"></script>
+  <script type="text/javascript" src="/static/assets/scripts/portfolio/portfolio-4-col-grid.js"></script>
+  </body>
+  </html>

@@ -22,10 +22,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
 
-from django.conf.urls.defaults import *
+from django.urls import path
+from myapp import views
+from django.contrib import admin
 
-urlpatterns = patterns('',
-    url(r'^$', 'myapp.views.home'),	
-    url(r'^process/$', 'myapp.views.process'),
-)
+urlpatterns = [
+    #path('', views.home),
+    path('index/<str:user>/', views.index),
+    path('home', views.home),	
+    path('process/', views.process),
+    path('resize/<str:user>/', views.resize),
+    path('login', views.login),
+    path('signup', views.signup),
+    path('', views.guest),
+]
 
